@@ -1,0 +1,139 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "ourApproach": "Notre Approche",
+    "realStories": "Vraies Histoires",
+    "tellYourStory": "Racontez Votre Histoire"
+  },
+  "hero": {
+    "company": "LABERGE CASTING",
+    "title": "Élever les Talents à Travers l'Art Raffiné",
+    "subtitle": "Découvrez l'excellence en casting avec Laberge Casting",
+    "description": "Nous élevons les talents à travers l'art raffiné et des solutions de casting sophistiquées."
+  },
+  "about": {
+    "title": "À Propos de Nous",
+    "description": "Chez Laberge Casting, nous croyons au pouvoir du talent exceptionnel et de l'art raffiné. Notre mission est de connecter des individus extraordinaires avec des opportunités qui mettent en valeur leurs capacités uniques."
+  },
+  "services": {
+    "title": "Nos Services",
+    "description": "Nous offrons des services de casting complets adaptés aux besoins diversifiés de nos clients et talents."
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "description": "Explorez notre collection de projets de casting réussis et de collaborations."
+  },
+  "talent": {
+    "title": "Talents",
+    "description": "Rencontrez les individus exceptionnels qui composent notre roster de talents diversifié."
+  },
+  "contact": {
+    "title": "Contactez-Nous",
+    "description": "Contactez notre équipe pour discuter de vos besoins en casting ou pour rejoindre notre roster de talents."
+  },
+  "language": {
+    "english": "English",
+    "french": "Français"
+  },
+  "ourApproach": {
+    "title": "Notre Approche",
+    "confidential": {
+      "title": "100% Confidentiel",
+      "description": "Vos informations restent privées et ne sont jamais partagées sans votre consentement."
+    },
+    "allStories": {
+      "title": "Tous les profils acceptés",
+      "description": "Grande ou petite, drôle ou émouvante, chaque histoire et chaque information que vous partagez avec nous est utile."
+    },
+    "storiesCollected": {
+      "title": "1000+ Histoires Collectées",
+      "description": "Autant de parcours uniques qui alimentent nos projets et nous inspirent chaque jour."
+    }
+  },
+  "realStories": {
+    "title": "Vraies Histoires",
+    "subtitle": "Qu'il s'agisse de votre travail, de votre famille, d'une expérience qui a changé votre vie, d'une passion profonde, d'un chemin inattendu, ou simplement de la beauté de la vie quotidienne, votre histoire pourrait résonner bien au-delà de ce que vous imaginez.",
+    "stories": {
+      "loveStory": {
+        "tag": "Une Histoire d'Amour Unique",
+        "quote": "Mon lien avec Jonas s'est épanoui à travers des échanges épistolaires : il était un jeune scout en Afrique, et moi, une scoute au Québec. Nous avons grandi, construit nos propres vies, eu des enfants, mais nous avons toujours gardé notre lien vivant à travers l'encre. Après avoir perdu nos conjoints, nos lettres sont devenues une promesse, et il a traversé l'océan pour être avec moi. Les années à ses côtés ont été les plus belles de ma vie. Jonas n'est plus maintenant, mais son amour vit encore dans chaque page de mon histoire.",
+        "author": "- Lyse Morency"
+      },
+      "resilience": {
+        "tag": "Une Histoire de Résilience",
+        "quote": "Le jour où on m'a dit que j'étais bipolaire, j'ai remercié le ciel que ce soit traitable. Je n'étais pas folle après tout... juste malade.",
+        "author": "- Louis Murray"
+      },
+      "stepmom": {
+        "tag": "Une Belle-Mère Qui Réécrit les Règles",
+        "quote": "Je suis en train de construire ma propre maison écologique dans une configuration familiale unique : moi, mon partenaire, ses trois enfants, la mère des enfants, et son partenaire. Une famille recomposée, réinventée et améliorée... et puis il y a le rôle de belle-mère dans tout ça. J'aimerais réécrire le récit autour de ce rôle souvent sous-estimé !",
+        "author": "- Abrielle Sirois-Cournoyer"
+      }
+    }
+  },
+  "tellYourStory": {
+    "title": "Parlez-nous de vous",
+    "hook": "Rien à perdre et aucune expérience requise. Lance-toi, c'est une opportunité réelle de passer à l'écran.",
+    "whatInvolves": {
+      "description": "Si un projet qui correspond à votre profil se présente, nous vous enverrons les détails du casting par courriel. Vous pourrez alors décider si vous voulez ou non soumettre votre candidature. C'est entièrement votre choix."
+    },
+    "perks": {
+      "description": "Pour la télévision, la publicité, le documentaire, les séries web, les balados ou la figuration."
+    },
+    "form": {
+      "name": "Nom Complet",
+      "email": "Adresse Courriel",
+      "phone": "Numéro de Téléphone",
+      "year": "Année de naissance",
+      "location": "Localisation",
+      "story": "Parlez-nous davantage de vous",
+      "language": "Langue Préférée de Communication",
+      "submit": "Soumettre Votre Histoire",
+      "placeholders": {
+        "name": "Entrez votre nom complet",
+        "email": "votre.courriel@exemple.com",
+        "phone": "+1 (555) 123-4567",
+        "year": "ex.: 1994",
+        "location": "Ville, Province/État",
+        "story": "Parlez de votre travail, de vos intérêts, de vos sports, de vos communautés, de votre parcours ou d'anecdotes."
+      },
+      "languages": {
+        "select": "Sélectionnez la langue préférée",
+        "english": "Anglais",
+        "french": "Français"
+      }
+    }
+  },
+  "video": {
+    "title": "Vivez l'Excellence",
+    "subtitle": "Où les Histoires Prennent Vie",
+    "description": "De vraies personnes. De vraies histoires. Rejoignez notre banque et laissez votre personnalité rayonner à l'écran.",
+    "loading": "Chargement de l'Expérience...",
+    "accessibility": "Vidéo plein écran présentant le travail de Laberge Casting au Musée de la civilisation à Québec"
+  },
+  "video2": {
+    "badge": "Dans les coulisses",
+    "headline": "Nous transformons des personnalités quotidiennes en moments inoubliables à l'écran.",
+    "description": "Des moodboards aux essayages en passant par les improvisations, chaque session est pensée pour laisser la vraie personnalité s'exprimer. L'authenticité est notre avantage caméra.",
+    "cta": "Planifier une séance de casting",
+    "ctaNote": "Vous préférez échanger rapidement ? Écrivez-nous pour un extrait privé.",
+    "highlights": {
+      "projects": {
+        "value": "80+",
+        "label": "projets castés par année"
+      },
+      "talent": {
+        "value": "5K+",
+        "label": "profils dans notre roster actif"
+      },
+      "cities": {
+        "value": "4",
+        "label": "villes où nous repérons chaque semaine"
+      }
+    }
+  },
+  "common": {
+    "continue": "Continuer",
+    "scroll": "Défiler"
+  }
+}

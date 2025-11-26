@@ -1,0 +1,139 @@
+{
+  "nav": {
+    "home": "Home",
+    "ourApproach": "Our Approach",
+    "realStories": "Real Stories",
+    "tellYourStory": "Tell Your Story"
+  },
+  "hero": {
+    "company": "LABERGE CASTING",
+    "title": "Elevating Talent Through Refined Artistry",
+    "subtitle": "Discover excellence in casting with Laberge Casting",
+    "description": "We elevate talent through refined artistry and sophisticated casting solutions."
+  },
+  "about": {
+    "title": "About Us",
+    "description": "At Laberge Casting, we believe in the power of exceptional talent and refined artistry. Our mission is to connect extraordinary individuals with opportunities that showcase their unique abilities."
+  },
+  "services": {
+    "title": "Our Services",
+    "description": "We offer comprehensive casting services tailored to meet the diverse needs of our clients and talent."
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "description": "Explore our collection of successful casting projects and collaborations."
+  },
+  "talent": {
+    "title": "Talent",
+    "description": "Meet the exceptional individuals who make up our diverse talent roster."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with our team to discuss your casting needs or to join our talent roster."
+  },
+  "language": {
+    "english": "English",
+    "french": "Français"
+  },
+  "ourApproach": {
+    "title": "Our Approach",
+    "confidential": {
+      "title": "100% Confidential",
+      "description": "Your information remains private and is never shared without your consent."
+    },
+    "allStories": {
+      "title": "All Types of profiles Accepted",
+      "description": "Big or small, funny or moving, every story and bit of information you share with us is useful."
+    },
+    "storiesCollected": {
+      "title": "1000+ Stories Collected",
+      "description": "So many unique paths that fuel our projects and inspire us every day."
+    }
+  },
+  "realStories": {
+    "title": "Real Stories",
+    "subtitle": "Whether it's about your work, your family, a life-changing experience, a deep passion, an unexpected path, or simply the beauty of everyday life, your story could resonate far beyond what you imagine.",
+    "stories": {
+      "loveStory": {
+        "tag": "A Unique Love Story",
+        "quote": "My bond with Jonas blossomed through epistolary exchanges: he was a young scout in Africa, and I, a scout in Quebec. We grew up, built our own lives, had children, yet we always kept our bond alive through ink. After losing our spouses, our letters became a promise, and he crossed the ocean to be with me. The years by his side were the most beautiful of my life. Jonas is gone now, but his love still lives in every page of my story.",
+        "author": "- Lyse Morency"
+      },
+      "resilience": {
+        "tag": "A Story of Resilience",
+        "quote": "The day I was told I was bipolar, I thanked the heavens it was treatable. I wasn't crazy after all... just sick.",
+        "author": "- Louis Murray"
+      },
+      "stepmom": {
+        "tag": "A Stepmom Who Rewrites the Rules",
+        "quote": "I'm in the process of building my own eco-friendly home in a unique family setup: me, my partner, his three kids, the kids' mother, and her partner. A blended family, reinvented and upgraded... and then there's the stepmom role in all of this. I would love to rewrite the narrative around this often underestimated role!",
+        "author": "- Abrielle Sirois-Cournoyer"
+      }
+    }
+  },
+  "tellYourStory": {
+    "title": "Tell us about yourself",
+    "hook": " Nothing to lose and no experience required. Go for it, it's a real opportunity to get on screen.",
+    "whatInvolves": {
+      "description": "If a project that matches your profile comes along, we'll email you the casting details. You can then decide whether or not you want to submit your candidacy. It's entirely up to you."
+    },
+    "perks": {
+      "description": "For television, advertising, documentaries, web series, podcasts or extras."
+    },
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "year": "Year of Birth",
+      "location": "Location",
+      "story": "Tell us more about yourself",
+      "language": "Preferred Language of Communication",
+      "submit": "Submit Your Story",
+      "placeholders": {
+        "name": "Enter your full name",
+        "email": "your.email@example.com",
+        "phone": "+1 (555) 123-4567",
+        "year": "e.g., 1994",
+        "location": "City, Province/State",
+        "story": "Share things like your work, interests, sports, communities, journey, or anecdotes."
+      },
+      "languages": {
+        "select": "Select preferred language",
+        "english": "English",
+        "french": "French"
+      }
+    }
+  },
+  "video": {
+    "title": "Experience Excellence",
+    "subtitle": "Where Stories Come to Life",
+    "description": "Real People. Real Stories. Join our pool and let your personality shine on screen",
+    "loading": "Loading Experience...",
+    "accessibility": "Full-screen video showcasing Laberge Casting's work at Musée de la civilisation in Quebec"
+  },
+  "video2": {
+    "badge": "Inside the studio",
+    "headline": "We turn everyday personalities into unforgettable screen moments.",
+    "description": "From moodboards to fittings and improvisations, every casting session is designed to let true personality surface. Authenticity is the camera-ready advantage.",
+    "cta": "Book a casting call",
+    "ctaNote": "Prefer a quick chat? Email us for a private preview reel.",
+    "highlights": {
+      "projects": {
+        "value": "80+",
+        "label": "projects cast per year"
+      },
+      "talent": {
+        "value": "5K+",
+        "label": "profiles in our active roster"
+      },
+      "cities": {
+        "value": "4",
+        "label": "cities we scout weekly"
+      }
+    }
+  },
+  "common": {
+    "continue": "Continue",
+    "scroll": "Scroll"
+  }
+}
