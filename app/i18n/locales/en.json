@@ -42,11 +42,11 @@
       "description": "Your information remains private and is never shared without your consent."
     },
     "allStories": {
-      "title": "All Types of profiles Accepted",
+      "title": "ALL Types of profiles Accepted",
       "description": "Big or small, funny or moving, every story and bit of information you share with us is useful."
     },
     "storiesCollected": {
-      "title": "1000+ Stories Collected",
+      "title": "1000+ Profiles Collected",
       "description": "So many unique paths that fuel our projects and inspire us every day."
     }
   },
@@ -73,13 +73,7 @@
   },
   "tellYourStory": {
     "title": "Tell us about yourself",
-    "hook": " Nothing to lose and no experience required. Go for it, it's a real opportunity to get on screen.",
-    "whatInvolves": {
-      "description": "If a project that matches your profile comes along, we'll email you the casting details. You can then decide whether or not you want to submit your candidacy. It's entirely up to you."
-    },
-    "perks": {
-      "description": "For television, advertising, documentaries, web series, podcasts or extras."
-    },
+    "description": "Take the leap, it's a real opportunity to get on screen.\n\nThere is nothing to lose, and no on-camera experience is required.\n\nWhether for TV, ads, documentaries, web series, podcasts or extra castings, everything is possible.",
     "form": {
       "name": "Full Name",
       "email": "Email Address",

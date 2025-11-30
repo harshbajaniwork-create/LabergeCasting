@@ -65,7 +65,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       <div className="absolute inset-0 bg-linear-to-br from-sky/5 via-sky/20 to-banane/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       {/* Decorative quote icon */}
-      <div className="absolute top-6 right-6 text-orchid/20 group-hover:text-orchid/40 transition-colors duration-300">
+      <div className="absolute top-6 right-6 text-tomato/20 group-hover:text-tomato/40 transition-colors duration-300">
         <Quote size={32} strokeWidth={1} />
       </div>
 
@@ -87,7 +87,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       </div>
 
       {/* Subtle border animation */}
-      <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-orchid/20 transition-colors duration-500" />
+      <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-tomato/20 transition-colors duration-500" />
     </div>
   );
 };

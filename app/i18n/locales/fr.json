@@ -42,11 +42,11 @@
       "description": "Vos informations restent privées et ne sont jamais partagées sans votre consentement."
     },
     "allStories": {
-      "title": "Tous les profils acceptés",
+      "title": "TOUS les profils acceptés",
       "description": "Grande ou petite, drôle ou émouvante, chaque histoire et chaque information que vous partagez avec nous est utile."
     },
     "storiesCollected": {
-      "title": "1000+ Histoires Collectées",
+      "title": "1000+ Histoires collectées",
       "description": "Autant de parcours uniques qui alimentent nos projets et nous inspirent chaque jour."
     }
   },
@@ -73,13 +73,7 @@
   },
   "tellYourStory": {
     "title": "Parlez-nous de vous",
-    "hook": "Rien à perdre et aucune expérience requise. Lance-toi, c'est une opportunité réelle de passer à l'écran.",
-    "whatInvolves": {
-      "description": "Si un projet qui correspond à votre profil se présente, nous vous enverrons les détails du casting par courriel. Vous pourrez alors décider si vous voulez ou non soumettre votre candidature. C'est entièrement votre choix."
-    },
-    "perks": {
-      "description": "Pour la télévision, la publicité, le documentaire, les séries web, les balados ou la figuration."
-    },
+    "description": "Lancez-vous, c'est une opportunité réelle de passer à l'écran.\n\nIl n'y a rien à perdre, et aucune expérience devant la caméra n'est requise.\n\nPour la télévision, la publicité, les documentaires, les webséries, les balados ou les rôles de figuration, tout est possible.",
     "form": {
       "name": "Nom Complet",
       "email": "Adresse Courriel",
@@ -88,7 +82,7 @@
       "location": "Localisation",
       "story": "Parlez-nous davantage de vous",
       "language": "Langue Préférée de Communication",
-      "submit": "Soumettre Votre Histoire",
+      "submit": "Soumettre votre histoire",
       "placeholders": {
         "name": "Entrez votre nom complet",
         "email": "votre.courriel@exemple.com",
@@ -106,7 +100,7 @@
   },
   "video": {
     "title": "Vivez l'Excellence",
-    "subtitle": "Où les Histoires Prennent Vie",
+    "subtitle": "Où les histoires prennent vie",
     "description": "De vraies personnes. De vraies histoires. Rejoignez notre banque et laissez votre personnalité rayonner à l'écran.",
     "loading": "Chargement de l'Expérience...",
     "accessibility": "Vidéo plein écran présentant le travail de Laberge Casting au Musée de la civilisation à Québec"

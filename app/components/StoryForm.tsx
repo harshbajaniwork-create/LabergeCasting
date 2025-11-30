@@ -106,7 +106,7 @@ const StoryForm: React.FC = () => {
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="relative bg-white/90 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-stone-200/50"
+        className="relative bg-white/90 backdrop-blur-md rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl border border-stone-200/50 w-full"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Name */}
@@ -140,36 +140,36 @@ const StoryForm: React.FC = () => {
               placeholder={t("tellYourStory.form.placeholders.email")}
             />
           </div>
+          <div className="flex flex-col w-full">
+            {/* Phone */}
+            <div className="group">
+              <label className="block text-sm font-medium text-stone-700 mb-2 group-focus-within:text-royal-blue transition-colors">
+                {t("tellYourStory.form.phone")}
+              </label>
+              <PhoneInput
+                countryCode={formData.countryCode}
+                phoneNumber={formData.phone}
+                onCountryCodeChange={handleCountryCodeChange}
+                onPhoneNumberChange={handlePhoneNumberChange}
+                placeholder={t("tellYourStory.form.placeholders.phone")}
+              />
+            </div>
 
-          {/* Phone */}
-          <div className="group">
-            <label className="block text-sm font-medium text-stone-700 mb-2 group-focus-within:text-royal-blue transition-colors">
-              {t("tellYourStory.form.phone")}
-            </label>
-            <PhoneInput
-              countryCode={formData.countryCode}
-              phoneNumber={formData.phone}
-              onCountryCodeChange={handleCountryCodeChange}
-              onPhoneNumberChange={handlePhoneNumberChange}
-              placeholder={t("tellYourStory.form.placeholders.phone")}
-            />
+            {/* Age */}
+            <div className="group mt-4">
+              <label className="block text-sm font-medium text-stone-700 mb-2 group-focus-within:text-royal-blue transition-colors">
+                {t("tellYourStory.form.year")}
+              </label>
+              <input
+                type="text"
+                name="year"
+                value={formData.year}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 transition-all duration-300 bg-white/80"
+                placeholder={t("tellYourStory.form.placeholders.year")}
+              />
+            </div>
           </div>
-
-          {/* Age */}
-          <div className="group">
-            <label className="block text-sm font-medium text-stone-700 mb-2 group-focus-within:text-royal-blue transition-colors">
-              {t("tellYourStory.form.year")}
-            </label>
-            <input
-              type="text"
-              name="year"
-              value={formData.year}
-              onChange={handleInputChange}
-              className="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 transition-all duration-300 bg-white/80"
-              placeholder={t("tellYourStory.form.placeholders.year")}
-            />
-          </div>
-
           {/* Location */}
           <div className="group md:col-span-2">
             <label className="block text-sm font-medium text-stone-700 mb-2 group-focus-within:text-royal-blue transition-colors">
@@ -228,13 +228,13 @@ const StoryForm: React.FC = () => {
 
         {/* Submit Button */}
         <div className="mt-8 text-center">
-          <MagneticButton
+          <button
             type="submit"
-            className="px-12 py-4 text-lg font-medium"
+            className="px-12 py-4 text-lg font-medium flex items-center justify-center gap-4 bg-sky hover:bg-royal-blue transition-colors duration-200 cursor-pointer rounded-full text-white"
           >
             <Send size={20} />
             {t("tellYourStory.form.submit")}
-          </MagneticButton>
+          </button>
         </div>
       </form>
     </div>

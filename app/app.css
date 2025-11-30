@@ -41,6 +41,7 @@
   --color-royal-blue: #4268D3;
   --color-banane: #F6EE52;
   --color-orchid: #BB6BD9;
+  --color-tomato: #E55C4A;
 }
 
 html,
@@ -216,50 +217,3 @@ body {
   filter: blur(1px) brightness(1.1) contrast(0.9);
 }
 
-/* Ribbon Animation Keyframes */
-@keyframes fade-in-scale {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.2);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes draw-line {
-  0% {
-    stroke-dashoffset: 2000px;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
-}
-
-.animate-fade-in-scale {
-  animation: fade-in-scale 0.6s ease-out forwards;
-}
-
-.animate-draw-line {
-  animation: draw-line 3s ease-out forwards;
-}
-
-/* Performance optimizations for animations */
-.ribbon-container {
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-.ribbon-svg {
-  will-change: stroke-dashoffset, opacity;
-}

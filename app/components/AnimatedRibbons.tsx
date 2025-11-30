@@ -1,13 +1,17 @@
-import React from 'react';
+import React from "react";
 
 interface AnimatedRibbonsProps {
   className?: string;
 }
 
-export default function AnimatedRibbons({ className = '' }: AnimatedRibbonsProps) {
-
+export default function AnimatedRibbons({
+  className = "",
+}: AnimatedRibbonsProps) {
   return (
-    <div className={`absolute left-0 right-0 pointer-events-none ${className}`} style={{ top: 0, bottom: 0 }}>
+    <div
+      className={`absolute left-0 right-0 pointer-events-none ${className}`}
+      style={{ top: 0, bottom: 0 }}
+    >
       {/* Left Ribbon */}
       <div className="absolute left-0 top-0 bottom-0 w-32">
         <svg
@@ -30,8 +34,7 @@ export default function AnimatedRibbons({ className = '' }: AnimatedRibbonsProps
             fill="none"
             stroke="url(#leftGradient)"
             strokeWidth="2"
-            strokeDasharray="12,8"
-            opacity="0.7"
+            opacity="0"
           />
         </svg>
       </div>
@@ -46,7 +49,13 @@ export default function AnimatedRibbons({ className = '' }: AnimatedRibbonsProps
           preserveAspectRatio="none"
         >
           <defs>
-            <linearGradient id="rightGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient
+              id="rightGradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
               <stop offset="0%" stopColor="#d6d3d1" stopOpacity="0.6" />
               <stop offset="30%" stopColor="#a8a29e" stopOpacity="0.8" />
               <stop offset="70%" stopColor="#a8a29e" stopOpacity="0.8" />
@@ -58,16 +67,15 @@ export default function AnimatedRibbons({ className = '' }: AnimatedRibbonsProps
             fill="none"
             stroke="url(#rightGradient)"
             strokeWidth="2"
-            strokeDasharray="12,8"
-            opacity="0.7"
+            opacity="0"
           />
         </svg>
       </div>
 
-      {/* Decorative dots */}
-      <div className="absolute left-8 top-1/4 w-2 h-2 bg-stone-400 rounded-full opacity-60" />
-      <div className="absolute right-8 top-3/4 w-2 h-2 bg-stone-400 rounded-full opacity-60" />
-      <div className="absolute left-16 top-2/3 w-1 h-1 bg-stone-500 rounded-full opacity-70" />
+      {/* Decorative dots - hidden */}
+      <div className="absolute left-8 top-1/4 w-2 h-2 bg-stone-400 rounded-full opacity-0" />
+      <div className="absolute right-8 top-3/4 w-2 h-2 bg-stone-400 rounded-full opacity-0" />
+      <div className="absolute left-16 top-2/3 w-1 h-1 bg-stone-500 rounded-full opacity-0" />
     </div>
   );
 }

@@ -14,33 +14,10 @@ gsap.registerPlugin(ScrollTrigger);
 const TellYourStorySection = () => {
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
-  const hookRef = useRef<HTMLParagraphElement>(null);
   const contentBlocksRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const hook = hookRef.current;
     const contentBlocks = contentBlocksRef.current;
-
-    if (hook) {
-      gsap.fromTo(
-        hook,
-        {
-          opacity: 0,
-          y: 40,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: hook,
-            start: "top 80%",
-            once: true,
-          },
-        }
-      );
-    }
 
     if (contentBlocks) {
       const blocks = contentBlocks.querySelectorAll(".content-block");
@@ -67,7 +44,7 @@ const TellYourStorySection = () => {
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.trigger === hook || trigger.trigger === contentBlocks) {
+        if (trigger.trigger === contentBlocks) {
           trigger.kill();
         }
       });
@@ -80,65 +57,58 @@ const TellYourStorySection = () => {
         id="tell-your-story"
         className="relative min-h-screen bg-stone-50 py-20"
       >
-      {/* Static Ribbons */}
-      <AnimatedRibbons className="z-0" />
+        {/* Static Ribbons */}
+        <AnimatedRibbons className="z-0" />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
-        {/* Heading with SplitText Animation */}
-        <div className="text-center mb-12">
-          <SplitText
-            key={`tell-your-story-title-${currentLanguage}`}
-            text={t("tellYourStory.title")}
-            tag="h2"
-            className="text-4xl md:text-6xl font-display font-light tracking-wide text-pitch-black mb-8"
-            delay={80}
-            duration={0.8}
-            splitType="chars"
-            from={{ opacity: 0, y: 60, rotateX: -90 }}
-            to={{ opacity: 1, y: 0, rotateX: 0 }}
-          />
-          {/* Hook Question with ScrollReveal fade-up */}
-          <p
-            ref={hookRef}
-            className="text-2xl md:text-3xl font-display font-light text-royal-blue mb-12"
-          >
-            {t("tellYourStory.hook")}
-          </p>
-        </div>
-
-        {/* Content Blocks with Stagger */}
-        <div
-          ref={contentBlocksRef}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16"
-        >
-          <div className="content-block">
-            <p className="text-stone-600 font-sans leading-relaxed">
-              {t("tellYourStory.perks.description")}
-            </p>
+        {/* Content */}
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
+          {/* Heading with SplitText Animation */}
+          <div className="text-center mb-12">
+            <SplitText
+              key={`tell-your-story-title-${currentLanguage}`}
+              text={t("tellYourStory.title")}
+              tag="h2"
+              className="text-4xl md:text-6xl font-display font-light tracking-wide text-pitch-black mb-8"
+              delay={80}
+              duration={0.8}
+              splitType="chars"
+              from={{ opacity: 0, y: 60, rotateX: -90 }}
+              to={{ opacity: 1, y: 0, rotateX: 0 }}
+            />
           </div>
 
-          <div className="content-block">
-            <p className="text-stone-600 font-sans leading-relaxed">
-              {t("tellYourStory.whatInvolves.description")}
-            </p>
+          {/* Main Content Paragraph */}
+          <div ref={contentBlocksRef} className="mb-16 max-w-3xl mx-auto">
+            <div className="content-block">
+              <p className="text-stone-600 font-sans leading-relaxed text-lg text-center whitespace-pre-line">
+                {t("tellYourStory.description")}
+              </p>
+            </div>
+          </div>
+
+          {/* Form Section with Slide-up Animation */}
+        </div>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center">
+            {/* Tagline Image - Hidden on mobile, shown on large screens */}
+            <div className="hidden lg:flex items-center justify-center">
+              <img
+                src={
+                  currentLanguage === "en"
+                    ? "/Tag lines/EveryoneHasAstory_1.png"
+                    : "/Tag lines/Laberge_casting_tagLine_destop_v2.png"
+                }
+                alt="tagline"
+                className="w-fit object-contain"
+                key={currentLanguage}
+              />
+            </div>
+            {/* Form - Full width on mobile, constrained on larger screens */}
+            <div className="w-full lg:w-fit mx-auto lg:mx-0">
+              <StoryForm />
+            </div>
           </div>
         </div>
-
-        {/* Form Section with Slide-up Animation */}
-      </div>
-      <div className="w-full max-w-fit mx-auto grid grid-cols-2 gap-20">
-        <div className="flex items-center justify-center">
-          <img
-            src="/Tag lines/EveryoneHasAstory_1.png"
-            alt="tagline"
-            className="w-fit object-contain"
-          />
-        </div>
-        <div className="flex w-fit">
-          <StoryForm />
-        </div>
-      </div>
       </section>
     </Element>
   );
