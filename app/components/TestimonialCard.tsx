@@ -1,10 +1,17 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { Quote } from "lucide-react";
-import ScrollTriggerPkg from "gsap/ScrollTrigger";
-const ScrollTrigger = ScrollTriggerPkg;
 
-gsap.registerPlugin(ScrollTrigger);
+// Client-side only import to avoid SSR issues
+let ScrollTrigger: any = null;
+
+// Initialize GSAP plugins only on client side
+if (typeof window !== "undefined") {
+  import("gsap/ScrollTrigger").then((module) => {
+    ScrollTrigger = module.default;
+    gsap.registerPlugin(ScrollTrigger);
+  });
+}
 
 interface TestimonialCardProps {
   tag: string;
@@ -22,8 +29,25 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   className = "",
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [scrollTriggerReady, setScrollTriggerReady] = useState<boolean>(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Wait for ScrollTrigger to load
+    const checkScrollTriggerReady = () => {
+      if (ScrollTrigger) {
+        setScrollTriggerReady(true);
+      } else {
+        setTimeout(checkScrollTriggerReady, 50);
+      }
+    };
+
+    checkScrollTriggerReady();
+  }, []);
+
+  useEffect(() => {
+    if (!scrollTriggerReady || typeof window === "undefined") return;
     const card = cardRef.current;
     if (!card) return;
 
@@ -50,11 +74,11 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     );
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
+      ScrollTrigger.getAll().forEach((trigger: any) => {
         if (trigger.trigger === card) trigger.kill();
       });
     };
-  }, [delay]);
+  }, [delay, scrollTriggerReady]);
 
   return (
     <div

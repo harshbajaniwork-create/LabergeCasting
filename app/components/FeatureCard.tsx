@@ -1,10 +1,16 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 
-import ScrollTriggerPkg from "gsap/ScrollTrigger";
-const ScrollTrigger = ScrollTriggerPkg;
+// Client-side only import to avoid SSR issues
+let ScrollTrigger: any = null;
 
-gsap.registerPlugin(ScrollTrigger);
+// Initialize GSAP plugins only on client side
+if (typeof window !== "undefined") {
+  import("gsap/ScrollTrigger").then((module) => {
+    ScrollTrigger = module.default;
+    gsap.registerPlugin(ScrollTrigger);
+  });
+}
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -22,8 +28,25 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   className = "",
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [scrollTriggerReady, setScrollTriggerReady] = useState<boolean>(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Wait for ScrollTrigger to load
+    const checkScrollTriggerReady = () => {
+      if (ScrollTrigger) {
+        setScrollTriggerReady(true);
+      } else {
+        setTimeout(checkScrollTriggerReady, 50);
+      }
+    };
+
+    checkScrollTriggerReady();
+  }, []);
+
+  useEffect(() => {
+    if (!scrollTriggerReady || typeof window === "undefined") return;
     const card = cardRef.current;
     if (!card) return;
 
@@ -50,11 +73,11 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
     );
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
+      ScrollTrigger.getAll().forEach((trigger: any) => {
         if (trigger.trigger === card) trigger.kill();
       });
     };
-  }, [delay]);
+  }, [delay, scrollTriggerReady]);
 
   return (
     <div

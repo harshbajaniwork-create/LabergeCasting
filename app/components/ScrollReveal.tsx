@@ -1,10 +1,17 @@
-import React, { useEffect, useRef, useMemo } from "react";
+import React, { useEffect, useRef, useMemo, useState } from "react";
 import type { ReactNode, RefObject } from "react";
 import { gsap } from "gsap";
-import ScrollTriggerPkg from "gsap/ScrollTrigger";
-const ScrollTrigger = ScrollTriggerPkg;
 
-gsap.registerPlugin(ScrollTrigger);
+// Client-side only import to avoid SSR issues
+let ScrollTrigger: any = null;
+
+// Initialize GSAP plugins only on client side
+if (typeof window !== "undefined") {
+  import("gsap/ScrollTrigger").then((module) => {
+    ScrollTrigger = module.default;
+    gsap.registerPlugin(ScrollTrigger);
+  });
+}
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -32,6 +39,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   wordAnimationEnd = "bottom bottom",
 }) => {
   const containerRef = useRef<HTMLHeadingElement>(null);
+  const [scrollTriggerReady, setScrollTriggerReady] = useState<boolean>(false);
 
   const splitText = useMemo(() => {
     const text = typeof children === "string" ? children : "";
@@ -46,6 +54,22 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   }, [children]);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Wait for ScrollTrigger to load
+    const checkScrollTriggerReady = () => {
+      if (ScrollTrigger) {
+        setScrollTriggerReady(true);
+      } else {
+        setTimeout(checkScrollTriggerReady, 50);
+      }
+    };
+
+    checkScrollTriggerReady();
+  }, []);
+
+  useEffect(() => {
+    if (!scrollTriggerReady || typeof window === "undefined") return;
     const el = containerRef.current;
     if (!el) return;
 
@@ -109,7 +133,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     }
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger: any) => trigger.kill());
     };
   }, [
     scrollContainerRef,
@@ -119,12 +143,13 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     rotationEnd,
     wordAnimationEnd,
     blurStrength,
+    scrollTriggerReady,
   ]);
 
   return (
     <h2 ref={containerRef} className={`my-5 ${containerClassName}`}>
       <p
-        className={`text-[clamp(1.6rem,4vw,3rem)] leading-[1.5] font-semibold ${textClassName}`}
+        className={`text-[clamp(1.6rem,4vw,3rem)] leading-normal font-semibold ${textClassName}`}
       >
         {splitText}
       </p>

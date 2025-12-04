@@ -1,24 +1,48 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Element } from "react-scroll";
 import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
 import AnimatedRibbons from "~/components/AnimatedRibbons";
 import SplitText from "~/components/SplitText";
 import StoryForm from "~/components/StoryForm";
-import ScrollTriggerPkg from "gsap/ScrollTrigger";
 import { useLanguage } from "~/contexts/LanguageContext";
-const ScrollTrigger = ScrollTriggerPkg;
 
-gsap.registerPlugin(ScrollTrigger);
+// Client-side only import to avoid SSR issues
+let ScrollTrigger: any = null;
+
+// Initialize GSAP plugins only on client side
+if (typeof window !== "undefined") {
+  import("gsap/ScrollTrigger").then((module) => {
+    ScrollTrigger = module.default;
+    gsap.registerPlugin(ScrollTrigger);
+  });
+}
 
 const TellYourStorySection = () => {
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
   const contentBlocksRef = useRef<HTMLDivElement>(null);
+  const [scrollTriggerReady, setScrollTriggerReady] = useState<boolean>(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Wait for ScrollTrigger to load
+    const checkScrollTriggerReady = () => {
+      if (ScrollTrigger) {
+        setScrollTriggerReady(true);
+      } else {
+        setTimeout(checkScrollTriggerReady, 50);
+      }
+    };
+
+    checkScrollTriggerReady();
+  }, []);
+
+  useEffect(() => {
+    if (!scrollTriggerReady || typeof window === "undefined") return;
     const contentBlocks = contentBlocksRef.current;
 
     if (contentBlocks) {
@@ -45,13 +69,13 @@ const TellYourStorySection = () => {
     }
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
+      ScrollTrigger.getAll().forEach((trigger: any) => {
         if (trigger.trigger === contentBlocks) {
           trigger.kill();
         }
       });
     };
-  }, []);
+  }, [scrollTriggerReady]);
 
   return (
     <Element name="tell-your-story">

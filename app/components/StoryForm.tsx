@@ -4,10 +4,17 @@ import { gsap } from "gsap";
 import { Send } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import PhoneInput from "./PhoneInput";
-import ScrollTriggerPkg from "gsap/ScrollTrigger";
-const ScrollTrigger = ScrollTriggerPkg;
 
-gsap.registerPlugin(ScrollTrigger);
+// Client-side only import to avoid SSR issues
+let ScrollTrigger: any = null;
+
+// Initialize GSAP plugins only on client side
+if (typeof window !== "undefined") {
+  import("gsap/ScrollTrigger").then((module) => {
+    ScrollTrigger = module.default;
+    gsap.registerPlugin(ScrollTrigger);
+  });
+}
 
 interface FormData {
   name: string;
@@ -23,6 +30,7 @@ interface FormData {
 const StoryForm: React.FC = () => {
   const { t } = useTranslation();
   const formRef = useRef<HTMLFormElement>(null);
+  const [scrollTriggerReady, setScrollTriggerReady] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -35,6 +43,22 @@ const StoryForm: React.FC = () => {
   });
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Wait for ScrollTrigger to load
+    const checkScrollTriggerReady = () => {
+      if (ScrollTrigger) {
+        setScrollTriggerReady(true);
+      } else {
+        setTimeout(checkScrollTriggerReady, 50);
+      }
+    };
+
+    checkScrollTriggerReady();
+  }, []);
+
+  useEffect(() => {
+    if (!scrollTriggerReady || typeof window === "undefined") return;
     const form = formRef.current;
     if (!form) return;
 
@@ -60,11 +84,11 @@ const StoryForm: React.FC = () => {
     );
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
+      ScrollTrigger.getAll().forEach((trigger: any) => {
         if (trigger.trigger === form) trigger.kill();
       });
     };
-  }, []);
+  }, [scrollTriggerReady]);
 
   const handleInputChange = (
     e: React.ChangeEvent<
