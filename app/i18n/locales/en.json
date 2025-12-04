@@ -83,6 +83,8 @@
       "story": "Tell us more about yourself",
       "language": "Preferred Language of Communication",
       "submit": "Submit Your Story",
+      "success": "Thank you! Your story has been sent.",
+      "error": "Something went wrong. Please try again in a moment.",
       "placeholders": {
         "name": "Enter your full name",
         "email": "your.email@example.com",

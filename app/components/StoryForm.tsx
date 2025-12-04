@@ -92,10 +92,67 @@ const StoryForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const formDataToSend = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        formDataToSend.append(key, value);
+      });
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: formDataToSend,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong");
+      }
+
+      setSubmitStatus({
+        type: "success",
+        message:
+          t("tellYourStory.form.success") || "Message sent successfully!",
+      });
+
+      // Keep user on the form and make sure the status message is visible
+      if (formRef.current) {
+        formRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        countryCode: "+1",
+        phone: "",
+        year: "",
+        location: "",
+        story: "",
+        language: "",
+      });
+    } catch (error) {
+      console.error("Submission error:", error);
+      setSubmitStatus({
+        type: "error",
+        message:
+          t("tellYourStory.form.error") ||
+          "Failed to send message. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -230,11 +287,29 @@ const StoryForm: React.FC = () => {
         <div className="mt-8 text-center">
           <button
             type="submit"
-            className="px-12 py-4 text-lg font-medium flex items-center justify-center gap-4 bg-sky hover:bg-royal-blue transition-colors duration-200 cursor-pointer rounded-full text-white"
+            disabled={isSubmitting}
+            className={`px-12 py-4 text-lg font-medium flex items-center justify-center gap-4 bg-sky hover:bg-royal-blue transition-colors duration-200 cursor-pointer rounded-full text-white ${
+              isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+            }`}
           >
-            <Send size={20} />
-            {t("tellYourStory.form.submit")}
+            {isSubmitting ? (
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+            ) : (
+              <Send size={20} />
+            )}
+            {isSubmitting ? "Sending..." : "Submit"}
           </button>
+          {submitStatus.message && (
+            <div
+              className={`mt-4 p-4 rounded-xl ${
+                submitStatus.type === "success"
+                  ? "bg-green-100 text-green-800 border border-green-200"
+                  : "bg-red-100 text-red-800 border border-red-200"
+              }`}
+            >
+              {submitStatus.message}
+            </div>
+          )}
         </div>
       </form>
     </div>

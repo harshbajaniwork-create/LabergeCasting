@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useEffect } from "react";
 import { Element } from "react-scroll";
 import { useTranslation } from "react-i18next";
