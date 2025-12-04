@@ -1,15 +1,7 @@
 import { useLayoutEffect, useRef, type ReactNode } from "react";
 import { gsap } from "gsap";
-import ScrollSmootherPkg from "gsap/ScrollSmoother";
 import { useGSAP } from "@gsap/react";
 import { setGlobalSmoother } from "../lib/utils";
-import ScrollTriggerPkg from "gsap/ScrollTrigger";
-
-const ScrollTrigger = ScrollTriggerPkg;
-const ScrollSmoother = ScrollSmootherPkg;
-
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const ScrollSmoothProvider = ({ children }: { children: ReactNode }) => {
   const smoothWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -20,36 +12,63 @@ const ScrollSmoothProvider = ({ children }: { children: ReactNode }) => {
     // Only run on the client, after React has hydrated the DOM
     if (typeof window === "undefined") return;
 
-    // Defer ScrollSmoother setup to the next animation frame to avoid
-    // mutating the DOM during React's hydration/commit phase.
-    const id = window.requestAnimationFrame(() => {
-      // Ensure DOM is ready
-      if (!smoothWrapperRef.current || !smoothContentRef.current) return;
+    let cancelled = false;
+    let rafId: number | null = null;
+    let ScrollTrigger: any;
 
-      // Kill any existing ScrollSmoother instance
-      if (smootherInstance.current) {
-        smootherInstance.current.kill();
+    const setup = async () => {
+      try {
+        // Dynamically import GSAP plugins only on the client so SSR doesn't try
+        // to evaluate their ESM in Node.
+        const [{ ScrollSmoother }, { ScrollTrigger: ST }] = await Promise.all([
+          import("gsap/ScrollSmoother"),
+          import("gsap/ScrollTrigger"),
+        ]);
+
+        if (cancelled) return;
+        ScrollTrigger = ST;
+
+        gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
+
+        // Defer ScrollSmoother setup to the next animation frame to avoid
+        // mutating the DOM during React's hydration/commit phase.
+        rafId = window.requestAnimationFrame(() => {
+          if (!smoothWrapperRef.current || !smoothContentRef.current) return;
+
+          // Kill any existing ScrollSmoother instance
+          if (smootherInstance.current) {
+            smootherInstance.current.kill();
+          }
+
+          // Create ScrollSmoother instance
+          smootherInstance.current = ScrollSmoother.create({
+            wrapper: smoothWrapperRef.current,
+            content: smoothContentRef.current,
+            smooth: 1.5,
+            effects: true,
+            smoothTouch: 0.1,
+            normalizeScroll: true,
+          });
+
+          // Set global reference for other components to use
+          setGlobalSmoother(smootherInstance.current);
+
+          // Refresh ScrollTrigger instances when ScrollSmoother is ready
+          ScrollTrigger.refresh();
+        });
+      } catch (e) {
+        // In production, fail silently rather than breaking the app if GSAP fails
+        console.error("ScrollSmoothProvider: failed to init GSAP smoother", e);
       }
+    };
 
-      // Create ScrollSmoother instance
-      smootherInstance.current = ScrollSmoother.create({
-        wrapper: smoothWrapperRef.current,
-        content: smoothContentRef.current,
-        smooth: 1.5,
-        effects: true,
-        smoothTouch: 0.1,
-        normalizeScroll: true,
-      });
-
-      // Set global reference for other components to use
-      setGlobalSmoother(smootherInstance.current);
-
-      // Refresh ScrollTrigger instances when ScrollSmoother is ready
-      ScrollTrigger.refresh();
-    });
+    setup();
 
     return () => {
-      window.cancelAnimationFrame(id);
+      cancelled = true;
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
       if (smootherInstance.current) {
         smootherInstance.current.kill();
         smootherInstance.current = null;
