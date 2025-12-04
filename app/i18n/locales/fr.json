@@ -83,6 +83,8 @@
       "story": "Parlez-nous davantage de vous",
       "language": "Langue Préférée de Communication",
       "submit": "Soumettre votre histoire",
+      "success": "Merci! Votre histoire a bien été envoyée.",
+      "error": "Un problème est survenu. Veuillez réessayer dans un instant.",
       "placeholders": {
         "name": "Entrez votre nom complet",
         "email": "votre.courriel@exemple.com",

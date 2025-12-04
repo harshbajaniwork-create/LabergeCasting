@@ -17,31 +17,39 @@ const ScrollSmoothProvider = ({ children }: { children: ReactNode }) => {
   const smootherInstance = useRef<any>(null);
 
   useGSAP(() => {
-    // Ensure DOM is ready
-    if (!smoothWrapperRef.current || !smoothContentRef.current) return;
+    // Only run on the client, after React has hydrated the DOM
+    if (typeof window === "undefined") return;
 
-    // Kill any existing ScrollSmoother instance
-    if (smootherInstance.current) {
-      smootherInstance.current.kill();
-    }
+    // Defer ScrollSmoother setup to the next animation frame to avoid
+    // mutating the DOM during React's hydration/commit phase.
+    const id = window.requestAnimationFrame(() => {
+      // Ensure DOM is ready
+      if (!smoothWrapperRef.current || !smoothContentRef.current) return;
 
-    // Create ScrollSmoother instance
-    smootherInstance.current = ScrollSmoother.create({
-      wrapper: smoothWrapperRef.current,
-      content: smoothContentRef.current,
-      smooth: 1.5,
-      effects: true,
-      smoothTouch: 0.1,
-      normalizeScroll: true,
+      // Kill any existing ScrollSmoother instance
+      if (smootherInstance.current) {
+        smootherInstance.current.kill();
+      }
+
+      // Create ScrollSmoother instance
+      smootherInstance.current = ScrollSmoother.create({
+        wrapper: smoothWrapperRef.current,
+        content: smoothContentRef.current,
+        smooth: 1.5,
+        effects: true,
+        smoothTouch: 0.1,
+        normalizeScroll: true,
+      });
+
+      // Set global reference for other components to use
+      setGlobalSmoother(smootherInstance.current);
+
+      // Refresh ScrollTrigger instances when ScrollSmoother is ready
+      ScrollTrigger.refresh();
     });
 
-    // Set global reference for other components to use
-    setGlobalSmoother(smootherInstance.current);
-
-    // Refresh ScrollTrigger instances when ScrollSmoother is ready
-    ScrollTrigger.refresh();
-
     return () => {
+      window.cancelAnimationFrame(id);
       if (smootherInstance.current) {
         smootherInstance.current.kill();
         smootherInstance.current = null;

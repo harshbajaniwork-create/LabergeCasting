@@ -10,6 +10,7 @@ export async function action({ request }: ActionFunctionArgs) {
     const formData = await request.formData();
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
+    const countryCode = (formData.get("countryCode") as string) || "";
     const phone = formData.get("phone") as string;
     const year = formData.get("year") as string;
     const location = formData.get("location") as string;
@@ -20,18 +21,17 @@ export async function action({ request }: ActionFunctionArgs) {
       return data({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const message = `
-      Year/Age: ${year}
-      Location: ${location}
-      Language Preference: ${language}
-      
-      Story:
-      ${story}
-    `;
-
     // Send emails in parallel
     await Promise.all([
-      sendAdminNotification({ name, email, phone, message }),
+      sendAdminNotification({
+        name,
+        email,
+        phone: [countryCode, phone].filter(Boolean).join(" "),
+        year,
+        location,
+        language,
+        story,
+      }),
       sendUserConfirmation(email, name),
     ]);
 

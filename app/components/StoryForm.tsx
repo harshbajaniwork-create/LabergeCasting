@@ -126,6 +126,11 @@ const StoryForm: React.FC = () => {
           t("tellYourStory.form.success") || "Message sent successfully!",
       });
 
+      // Keep user on the form and make sure the status message is visible
+      if (formRef.current) {
+        formRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
       // Reset form
       setFormData({
         name: "",
@@ -292,9 +297,7 @@ const StoryForm: React.FC = () => {
             ) : (
               <Send size={20} />
             )}
-            {isSubmitting
-              ? t("tellYourStory.form.sending") || "Sending..."
-              : t("tellYourStory.form.submit")}
+            {isSubmitting ? "Sending..." : "Submit"}
           </button>
           {submitStatus.message && (
             <div
