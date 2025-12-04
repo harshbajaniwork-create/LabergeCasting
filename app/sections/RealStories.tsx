@@ -1,21 +1,29 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
 import AnimatedRibbons from "~/components/AnimatedRibbons";
 import SplitText from "~/components/SplitText";
 import TestimonialCard from "~/components/TestimonialCard";
-import ScrollTriggerPkg from "gsap/ScrollTrigger";
 import { useLanguage } from "~/contexts/LanguageContext";
-const ScrollTrigger = ScrollTriggerPkg;
 
-gsap.registerPlugin(ScrollTrigger);
+// Client-side only import to avoid SSR issues
+let ScrollTrigger: any = null;
+
+// Initialize GSAP plugins only on client side
+if (typeof window !== "undefined") {
+  import("gsap/ScrollTrigger").then((module) => {
+    ScrollTrigger = module.default;
+    gsap.registerPlugin(ScrollTrigger);
+  });
+}
 
 const RealStoriesSection = () => {
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
   const subheadingRef = useRef<HTMLParagraphElement>(null);
+  const [scrollTriggerReady, setScrollTriggerReady] = useState<boolean>(false);
 
   const stories = [
     {
@@ -39,6 +47,22 @@ const RealStoriesSection = () => {
   ];
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Wait for ScrollTrigger to load
+    const checkScrollTriggerReady = () => {
+      if (ScrollTrigger) {
+        setScrollTriggerReady(true);
+      } else {
+        setTimeout(checkScrollTriggerReady, 50);
+      }
+    };
+
+    checkScrollTriggerReady();
+  }, []);
+
+  useEffect(() => {
+    if (!scrollTriggerReady || typeof window === "undefined") return;
     const subheading = subheadingRef.current;
     if (!subheading) return;
 
@@ -62,11 +86,11 @@ const RealStoriesSection = () => {
     );
 
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => {
+      ScrollTrigger.getAll().forEach((trigger: any) => {
         if (trigger.trigger === subheading) trigger.kill();
       });
     };
-  }, []);
+  }, [scrollTriggerReady]);
 
   return (
     <section id="real-stories" className="relative min-h-screen bg-white py-20">

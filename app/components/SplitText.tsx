@@ -1,13 +1,25 @@
 import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
-import SplitTextPkg from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
-import ScrollTriggerPkg from "gsap/ScrollTrigger";
 
-const ScrollTrigger = ScrollTriggerPkg;
-const GSAPSplitText = SplitTextPkg;
+// Client-side only imports to avoid SSR issues
+let ScrollTrigger: any = null;
+let GSAPSplitText: any = null;
 
-gsap.registerPlugin(ScrollTrigger, GSAPSplitText, useGSAP);
+// Initialize GSAP plugins only on client side
+if (typeof window !== "undefined") {
+  import("gsap/ScrollTrigger").then((module) => {
+    ScrollTrigger = module.default;
+    gsap.registerPlugin(ScrollTrigger);
+  });
+
+  import("gsap/SplitText").then((module) => {
+    GSAPSplitText = module.default;
+    gsap.registerPlugin(GSAPSplitText);
+  });
+
+  gsap.registerPlugin(useGSAP);
+}
 
 export interface SplitTextProps {
   text: string;
@@ -43,8 +55,11 @@ const SplitText: React.FC<SplitTextProps> = ({
   const ref = useRef<HTMLParagraphElement>(null);
   const animationCompletedRef = useRef(false);
   const [fontsLoaded, setFontsLoaded] = useState<boolean>(false);
+  const [gsapReady, setGsapReady] = useState<boolean>(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     if (document.fonts.status === "loaded") {
       setFontsLoaded(true);
     } else {
@@ -54,9 +69,31 @@ const SplitText: React.FC<SplitTextProps> = ({
     }
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Wait for both GSAP plugins to load
+    const checkGSAPReady = () => {
+      if (ScrollTrigger && GSAPSplitText) {
+        setGsapReady(true);
+      } else {
+        setTimeout(checkGSAPReady, 50);
+      }
+    };
+
+    checkGSAPReady();
+  }, []);
+
   useGSAP(
     () => {
-      if (!ref.current || !text || !fontsLoaded) return;
+      if (
+        !ref.current ||
+        !text ||
+        !fontsLoaded ||
+        !gsapReady ||
+        typeof window === "undefined"
+      )
+        return;
       const el = ref.current as HTMLElement & {
         _rbsplitInstance?: any; // Changed type to any
       };
@@ -155,6 +192,7 @@ const SplitText: React.FC<SplitTextProps> = ({
         threshold,
         rootMargin,
         fontsLoaded,
+        gsapReady,
         onLetterAnimationComplete,
       ],
       scope: ref,
