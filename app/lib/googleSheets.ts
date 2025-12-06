@@ -77,10 +77,17 @@ export const appendToGoogleSheet = async (
       ],
     ];
 
+    // Get the first sheet name dynamically
+    const spreadsheetInfo = await sheets.spreadsheets.get({
+      spreadsheetId,
+    });
+    const sheetName =
+      spreadsheetInfo.data.sheets?.[0]?.properties?.title || "Sheet1";
+
     // Append the data to the sheet
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId,
-      range: "Sheet1!A:H", // Adjust range as needed
+      range: `${sheetName}!A:H`,
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values,
@@ -105,6 +112,15 @@ export const createSheetHeaders = async () => {
       throw new Error("GOOGLE_SHEET_ID environment variable is not set");
     }
 
+    // First, get the spreadsheet info to check sheet names
+    const spreadsheetInfo = await sheets.spreadsheets.get({
+      spreadsheetId,
+    });
+
+    const sheetName =
+      spreadsheetInfo.data.sheets?.[0]?.properties?.title || "Sheet1";
+    console.log(`Using sheet name: ${sheetName}`);
+
     const headers = [
       [
         "Submitted At",
@@ -120,7 +136,7 @@ export const createSheetHeaders = async () => {
 
     const response = await sheets.spreadsheets.values.update({
       spreadsheetId,
-      range: "Sheet1!A1:H1",
+      range: `${sheetName}!A1:H1`,
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: headers,
@@ -148,9 +164,16 @@ export const getSubmissions = async () => {
       throw new Error("GOOGLE_SHEET_ID environment variable is not set");
     }
 
+    // Get the first sheet name dynamically
+    const spreadsheetInfo = await sheets.spreadsheets.get({
+      spreadsheetId,
+    });
+    const sheetName =
+      spreadsheetInfo.data.sheets?.[0]?.properties?.title || "Sheet1";
+
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
-      range: "Sheet1!A:H",
+      range: `${sheetName}!A:H`,
     });
 
     return response.data.values || [];
