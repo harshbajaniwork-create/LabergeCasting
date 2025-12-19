@@ -312,24 +312,28 @@ const StoryForm: React.FC = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`px-12 py-4 text-lg font-medium flex items-center justify-center gap-4 bg-sky hover:bg-royal-blue transition-colors duration-200 cursor-pointer rounded-full text-white ${
-              isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-            }`}
+            className={`px-12 py-4 text-lg font-medium flex items-center justify-center gap-4 bg-sky hover:bg-royal-blue transition-colors duration-200 cursor-pointer rounded-full text-white ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+              }`}
           >
             {isSubmitting ? (
-              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              <>
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                {t("tellYourStory.form.submitting")}
+              </>
             ) : (
-              <Send size={20} />
+              <>
+                <Send size={20} />
+                {t("tellYourStory.form.submit")}
+              </>
             )}
-            {isSubmitting ? "Sending..." : "Submit"}
           </button>
+
           {submitStatus.message && (
             <div
-              className={`mt-4 p-4 rounded-xl ${
-                submitStatus.type === "success"
+              className={`mt-4 p-4 rounded-xl ${submitStatus.type === "success"
                   ? "bg-green-100 text-green-800 border border-green-200"
                   : "bg-red-100 text-red-800 border border-red-200"
-              }`}
+                }`}
             >
               {submitStatus.message}
             </div>
