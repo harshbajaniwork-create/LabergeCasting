@@ -86,21 +86,23 @@ export default function PrivacyPolicy() {
                   </ul>
                 )}
 
-                {t(`privacyPolicy.sections.${sectionKey}.footer`) && (
+                {i18n.exists(`privacyPolicy.sections.${sectionKey}.footer`) && (
                   <p className="text-stone-600 font-light underline-offset-4">
                     {t(`privacyPolicy.sections.${sectionKey}.footer`)}
                   </p>
                 )}
 
-                {t(`privacyPolicy.sections.${sectionKey}.p2`) && (
+                {i18n.exists(`privacyPolicy.sections.${sectionKey}.p2`) && (
                   <p>{t(`privacyPolicy.sections.${sectionKey}.p2`)}</p>
                 )}
 
-                {t(`privacyPolicy.sections.${sectionKey}.p3`) && (
+                {i18n.exists(`privacyPolicy.sections.${sectionKey}.p3`) && (
                   <p>{t(`privacyPolicy.sections.${sectionKey}.p3`)}</p>
                 )}
 
-                {t(`privacyPolicy.sections.${sectionKey}.wixLink`) && (
+                {i18n.exists(
+                  `privacyPolicy.sections.${sectionKey}.wixLink`,
+                ) && (
                   <a
                     href="https://www.wix.com/about/privacy"
                     target="_blank"
