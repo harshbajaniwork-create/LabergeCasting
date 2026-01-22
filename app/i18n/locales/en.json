@@ -128,6 +128,69 @@
       }
     }
   },
+  "privacyPolicy": {
+    "title": "Laberge Casting Privacy Policy",
+    "lastUpdated": "Last updated: April 22, 2025",
+    "intro": "At Laberge Casting, we love discovering people for who they truly are and that starts with respecting your privacy. This policy simply explains how your information is collected, used, and protected when you visit our website or fill out our form.",
+    "sections": {
+      "collect": {
+        "title": "What information do we collect?",
+        "text": "When you fill out our casting form, you voluntarily share personal information such as:",
+        "items": [
+          "Your first and last name",
+          "Your email address",
+          "Your phone number",
+          "Your profession, life journey, interests, anecdotes, or any other details you wish to share"
+        ]
+      },
+      "why": {
+        "title": "Why do we collect it?",
+        "text": "We use your data to:",
+        "items": [
+          "Contact you for our various casting opportunities",
+          "Offer you projects that match your profile",
+          "Share your information with producers or directors for specific projects. We are committed to never using your stories or personal information without your prior consent."
+        ],
+        "footer": "All of this helps us get to know you better and support inclusive, authentic casting."
+      },
+      "where": {
+        "title": "Where does your data go?",
+        "text": "All the data you enter is securely stored via Wix, the platform this site is built on. Wix uses reliable security protocols like SSL encryption, firewalls, and secure servers to protect your data. You can view their full policy here:",
+        "wixLink": "Wix Privacy Policy",
+        "footer": "In addition, access to your personal information is restricted to authorized members of our team."
+      },
+      "consent": {
+        "title": "Consent",
+        "text": "By filling out our website form, you consent to the collection, use, and storage of your personal information in accordance with this privacy policy. You also agree to be contacted by email about future casting opportunities related to your profile.",
+        "p2": "Your data will never be sold or shared for commercial purposes without your explicit consent.",
+        "p3": "If our company were ever to be sold or merged, we will inform you in advance and ask for your consent before transferring your information to the new entity.",
+        "footer": "We are committed to ensuring that your data is used with respect, in line with your rights, your privacy, and the spirit in which you shared it with us."
+      },
+      "changes": {
+        "title": "Changes to this privacy policy",
+        "text": "We reserve the right to update this privacy policy at any time. Any changes will be posted on this page with the latest update date. We encourage you to check this page regularly for any updates."
+      },
+      "retention": {
+        "title": "Data retention",
+        "text": "We keep your personal information for as long as necessary to fulfill the purposes for which it was collected, especially to contact you for relevant casting projects. Once the data is no longer needed, we securely delete or anonymize it."
+      },
+      "rights": {
+        "title": "Your rights",
+        "text": "You have the right to view, correct, or delete your information at any time. And of course, if you no longer wish to be in our database, just let us know.",
+        "contact": "For any request, simply send us an email at: info@labergecasting.com. We promise to get back to you quickly and kindly."
+      },
+      "cookies": {
+        "title": "What about cookies?",
+        "text": "This site uses basic cookies necessary for its proper functioning (such as those used by Wix to keep things running smoothly). No hidden ads, no wild tracking—just what’s needed to ensure a smooth experience."
+      },
+      "contact": {
+        "title": "Contact us",
+        "text": "Have a question? A concern? Write to us at:",
+        "contact": "📧 info@labergecasting.com"
+      },
+      "thanks": "Thank you for trusting Laberge Casting. Here, we celebrate real stories—and it all starts with you."
+    }
+  },
   "common": {
     "continue": "Continue",
     "scroll": "Scroll"

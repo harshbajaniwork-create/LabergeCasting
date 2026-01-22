@@ -128,6 +128,69 @@
       }
     }
   },
+  "privacyPolicy": {
+    "title": "Politique de confidentialité de Laberge Casting",
+    "lastUpdated": "Dernière mise à jour : 22 avril 2025",
+    "intro": "Chez Laberge Casting, on aime découvrir les gens pour qui ils sont vraiment. Et ça commence par respecter votre vie privée. Cette politique explique simplement comment vos informations sont collectées, utilisées et protégées quand vous visitez notre site ou remplissez notre formulaire.",
+    "sections": {
+      "collect": {
+        "title": "Quelles informations on collecte?",
+        "text": "Quand vous remplissez notre formulaire de casting, vous nous partagez volontairement des informations personnelles comme :",
+        "items": [
+          "votre nom et prénom",
+          "votre adresse email",
+          "votre numéro de téléphone",
+          "votre profession, votre parcours de vie, vos intérêts, des anecdotes ou autres détails que vous souhaitez partager"
+        ]
+      },
+      "why": {
+        "title": "Pourquoi on les collecte ?",
+        "text": "Vos données nous permettent de :",
+        "items": [
+          "Vous recontacter dans le cadre de nos différents castings",
+          "Vous proposer des opportunités qui correspondent à votre profil",
+          "Partager vos informations avec des producteurs ou des réalisateurs dans le cadre de projets spécifiques. Nous nous engageons à ne jamais utiliser vos histoires ou informations personnelles sans votre autorisation préalable."
+        ],
+        "footer": "Toutes ces informations servent à mieux vous connaître et favoriser des castings inclusifs et authentiques."
+      },
+      "where": {
+        "title": "Où vont ces données ?",
+        "text": "Toutes les données que vous saisissez sont stockées de manière sécurisée via Wix, la plateforme sur laquelle ce site est construit. Wix utilise des protocoles de sécurité fiables, comme le chiffrement SSL, des pare-feux et des serveurs sécurisés, pour protéger vos données. Vous pouvez consulter leur politique complète ici :",
+        "wixLink": "Politique de confidentialité Wix",
+        "footer": "De plus, l'accès limité à vos informations personnelles est restreint aux membres autorisés de notre équipe."
+      },
+      "consent": {
+        "title": "Consentement",
+        "text": "En remplissant le formulaire de notre site web, vous consentez à la collecte, l'utilisation et la conservation de vos renseignements personnels conformément à cette politique de confidentialité. Vous consentez également à être contacté par courriel pour vous informer de futures opportunités de casting en lien avec votre profil.",
+        "p2": "Vos données ne seront jamais revendues ou partagées à des fins commerciales sans votre consentement explicite.",
+        "p3": "Si un jour l’entreprise venait à être vendue ou fusionnée, nous vous en informerons à l’avance et nous vous demanderons votre consentement pour transférer vos renseignements à la nouvelle entité.",
+        "footer": "Nous nous engageons à ce que toute utilisation de vos données respecte vos droits, votre vie privée et l’esprit dans lequel vous nous les avez confiées."
+      },
+      "changes": {
+        "title": "Modifications de cette politique de confidentialité",
+        "text": "Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Toute modification sera publiée sur cette page avec la date de la dernière mise à jour. Nous vous encourageons à consulter régulièrement cette page pour prendre connaissance des modifications éventuelles."
+      },
+      "retention": {
+        "title": "Durée de conservation",
+        "text": "Nous conservons vos renseignements personnels aussi longtemps que nécessaire pour les fins pour lesquelles ils ont été collectés, notamment pour vous contacter dans le cadre de projets de casting pertinents. Nous procédons à une suppression sécurisée ou à une anonymisation des données lorsqu’elles ne sont plus nécessaires."
+      },
+      "rights": {
+        "title": "Vos droits",
+        "text": "Vous avez le droit de regarder, corriger ou supprimer vos informations à tout moment. Et bien sûr, si vous ne souhaitez plus faire partie de notre base, il suffit de nous le faire savoir.",
+        "contact": "Pour toute demande, envoyez-nous simplement un email à : info@labergecasting.com. On s’engage à vous répondre rapidement avec bienveillance."
+      },
+      "cookies": {
+        "title": "Et les cookies ?",
+        "text": "Le site utilise les cookies de base nécessaires à son bon fonctionnement (comme ceux que Wix utilise pour que tout roule bien). Pas de pub cachée, pas de pistage sauvage – juste l’essentiel pour que l’expérience soit fluide."
+      },
+      "contact": {
+        "title": "Pour nous joindre",
+        "text": "Une question? Une inquiétude? Écrivez-nous à :",
+        "contact": "📧 info@labergecasting.com"
+      },
+      "thanks": "Merci de faire confiance à Laberge Casting. Ici, on célèbre les histoires vraies, et ça commence par vous."
+    }
+  },
   "common": {
     "continue": "Continuer",
     "scroll": "Défiler"

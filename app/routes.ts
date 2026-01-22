@@ -6,4 +6,8 @@ export default [
     path: "api/contact",
     file: "routes/api.contact.ts",
   },
+  {
+    path: "privacy-policy",
+    file: "routes/privacy-policy.tsx",
+  },
 ] satisfies RouteConfig;

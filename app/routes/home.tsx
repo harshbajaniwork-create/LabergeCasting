@@ -6,6 +6,7 @@ import RealStoriesSection from "~/sections/RealStories";
 import TellYourStorySection from "~/sections/TellYourStory";
 import VideoSection1 from "~/sections/VideoSection1";
 import VideoSection2 from "~/sections/VideoSection2";
+import Footer from "../components/Footer";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -32,6 +33,7 @@ export default function Home() {
         <VideoSection2 />
         <RealStoriesSection />
         <TellYourStorySection />
+        <Footer />
       </ScrollSmoothProvider>
     </main>
   );
