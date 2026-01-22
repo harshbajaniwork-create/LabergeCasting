@@ -13,19 +13,12 @@ export default function VideoSection2(): React.JSX.Element {
   const [isVideoLoaded, setIsVideoLoaded] = useState<boolean>(false);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      const handleLoadedData = () => {
-        setIsVideoLoaded(true);
-        video.play().catch((error) => {
-          console.log("Video autoplay failed:", error);
-        });
-      };
-
-      video.addEventListener("loadeddata", handleLoadedData);
-      return () => video.removeEventListener("loadeddata", handleLoadedData);
+    if (videoRef.current && isVideoLoaded) {
+      videoRef.current.play().catch((error) => {
+        console.log("Video autoplay failed:", error);
+      });
     }
-  }, []);
+  }, [isVideoLoaded]);
 
   return (
     <section
@@ -44,10 +37,12 @@ export default function VideoSection2(): React.JSX.Element {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
+          poster="/Video/video-poster-2.png"
+          onLoadedData={() => setIsVideoLoaded(true)}
           style={{
-            opacity: isVideoLoaded ? 1 : 0,
-            transition: "opacity 1s ease-in-out",
+            opacity: isVideoLoaded ? 1 : 0.8,
+            transition: "opacity 1.5s ease-in-out",
           }}
         >
           <source src="/Video/video2.mp4" type="video/mp4" />
@@ -56,15 +51,10 @@ export default function VideoSection2(): React.JSX.Element {
         </video>
       </div>
 
-      {/* Video Loading Placeholder */}
+      {/* Subtle Loading Hint (Optional, non-blocking) */}
       {!isVideoLoaded && (
-        <div className="absolute inset-0 z-20 bg-linear-to-br from-stone-900 via-stone-800 to-black flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-16 h-16 border-4 border-stone-300 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-stone-300 font-sans font-light tracking-wide">
-              {t("video.loading")}
-            </p>
-          </div>
+        <div className="absolute top-4 right-4 z-50">
+          <div className="w-4 h-4 border-2 border-white/20 border-t-white/60 rounded-full animate-spin"></div>
         </div>
       )}
 
