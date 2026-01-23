@@ -3,9 +3,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
+import { useLanguage } from "~/contexts/LanguageContext";
 
 const Footer = () => {
   const { t } = useTranslation();
+  const { currentLanguage } = useLanguage();
 
   return (
     <footer className="relative z-10 bg-stone-50 py-12 px-6 border-t border-stone-200/50">
@@ -17,7 +19,7 @@ const Footer = () => {
 
         {/* Privacy Policy Link */}
         <Link
-          to="/privacy-policy"
+          to={`/${currentLanguage}/privacy-policy`}
           className="group relative text-stone-500 font-sans text-xs uppercase tracking-[0.2em] transition-colors duration-300 hover:text-stone-900"
         >
           {t("privacyPolicy.title")}
